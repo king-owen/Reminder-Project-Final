@@ -40,7 +40,10 @@ let remindersController = {
   // Show the Edit Reminder Page
   edit: (req, res) => {
     // ⭐️ your implementation here ⭐️
-
+    let reminderToFind = req.params.id;
+    //find the reminder
+    let obj = database.cindy.reminders.find(obj => obj.id == reminderToFind)
+    res.render('reminder/edit',{reminderItem: obj})
   },
 
   // Edit the Reminder
