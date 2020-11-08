@@ -60,7 +60,7 @@ let remindersController = {
     let deleteIndex = database.cindy.reminders.indexOf(obj);
     // finds the index of the reminder
     database.cindy.reminders.splice(deleteIndex, 1);
-    // removes the index of the item form the list in the database
+    // removes the index of the item from the list in the database
     res.redirect('/reminders');
   }
 }
