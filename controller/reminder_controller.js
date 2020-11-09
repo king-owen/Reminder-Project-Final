@@ -49,6 +49,13 @@ let remindersController = {
   // Edit the Reminder
   update: (req, res) => {
     // ⭐️ your implementation here ⭐️
+    let remindertoUpdate = req.params.id;
+    // find the reminder
+    let obj = database.cindy.reminders.find(obj => obj.id == remindertoUpdate)
+    // Updates the reminder
+
+    // Render edited reminder
+    res.render('reminder/single-reminder', {reminderItem: obj})
   },
 
   // Delete the Reminder
@@ -60,7 +67,7 @@ let remindersController = {
     let deleteIndex = database.cindy.reminders.indexOf(obj);
     // finds the index of the reminder
     database.cindy.reminders.splice(deleteIndex, 1);
-    // removes the index of the item from the list in the database
+    // removes the index of the item form the list in the database
     res.redirect('/reminders');
   }
 }
