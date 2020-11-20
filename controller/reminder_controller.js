@@ -8,6 +8,7 @@ let remindersController = {
 
   // Show a Create Reminder Page
   new: (req, res) => {
+    res.locals.path = req.path
     res.render('reminder/create')
   },
 
