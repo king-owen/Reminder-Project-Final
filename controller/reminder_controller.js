@@ -32,6 +32,8 @@ let remindersController = {
       id: database.cindy.reminders.length + 1,
       title: req.body.title,
       description: req.body.description,
+      subtasks: req.body.subtasks,
+      tags: req.body.tags,
       completed: false
     }
     database.cindy.reminders.push(reminder);
@@ -58,6 +60,8 @@ let remindersController = {
       id: obj.id,
       title: req.body.title,
       description: req.body.description,
+      subtasks: req.body.subtasks,
+      tags: req.body.tags,
       completed: Boolean(req.body.completed)
     }
     // database.cindy.reminders.find(obj => obj.id == reminder.id) = reminder;
