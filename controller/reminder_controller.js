@@ -32,11 +32,12 @@ let remindersController = {
       id: database.cindy.reminders.length + 1,
       title: req.body.title,
       description: req.body.description,
-      subtasks: req.body.subtasks,
+      subtasks: req.body.subtasks.split(", "),
       tags: req.body.tags,
       completed: false
     }
     database.cindy.reminders.push(reminder);
+    console.log(reminder)
     res.redirect('/reminders');
   },
 
@@ -60,7 +61,7 @@ let remindersController = {
       id: obj.id,
       title: req.body.title,
       description: req.body.description,
-      subtasks: req.body.subtasks,
+      subtasks: req.body.subtasks.split(", "),
       tags: req.body.tags,
       completed: Boolean(req.body.completed)
     }
