@@ -4,7 +4,31 @@ const path = require("path");
 const ejsLayouts = require("express-ejs-layouts");
 const reminderController = require("./controller/reminder_controller");
 const authController = require("./controller/auth_controller");
+const cookieSession = require("cookie-session");
+const authCheck = require("./middleware/auth")
 // const landingController = require("./controller/landing_controller");
+
+
+// initiate cookie session name, key scrambler, maximum time on login
+app.use(cookieSession({
+  name: "session",
+  keys: ["aaa", "bbb", "ccc"],
+  maxAge: 10*24*3600*1000
+}))
+
+// implement middleware function
+app.use(function(req, res, next){
+  console.log("Email is " + req.email)
+
+  if(req.session.email){
+      if (database[req.session.email]) {
+          req.email = database[req.session.email];
+          next();
+      }
+  }   else{
+      next();
+  }
+})
 
 
 
