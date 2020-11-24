@@ -6,6 +6,7 @@ const reminderController = require("./controller/reminder_controller");
 const authController = require("./controller/auth_controller");
 const cookieSession = require("cookie-session");
 const authCheck = require("./middleware/auth")
+let {Database} = require("./database");
 // const landingController = require("./controller/landing_controller");
 
 
@@ -18,11 +19,11 @@ app.use(cookieSession({
 
 // implement middleware function
 app.use(function(req, res, next){
-  console.log("Email is " + req.email)
+  // console.log("Email is " + req.email)
 
   if(req.session.email){
-      if (database[req.session.email]) {
-          req.email = database[req.session.email];
+      if (Database[req.session.email]) {
+          req.email = Database[req.session.email];
           next();
       }
   }   else{
@@ -53,13 +54,13 @@ app.set("view engine", "ejs");
 
 // Routes start here
 
-app.get("/reminders", reminderController.list)
+app.get("/reminders", authCheck, reminderController.list)
 
-app.get("/reminder/new", reminderController.new)
+app.get("/reminder/new", authCheck, reminderController.new)
 
-app.get("/reminder/:id", reminderController.listOne)
+app.get("/reminder/:id", authCheck, reminderController.listOne)
 
-app.get("/reminder/:id/edit", reminderController.edit)
+app.get("/reminder/:id/edit", authCheck, reminderController.edit)
 
 app.post("/reminder/", reminderController.create)
 

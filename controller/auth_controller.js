@@ -1,4 +1,4 @@
-let database = require("../database");
+let {Database} = require("../database");
 
 
 
@@ -20,9 +20,14 @@ let authController = {
   },
 
   registerSubmit: (req, res) => {
-//     console.log("test")
+    console.log(Database)
     if (req.body.email && req.body.password){
-      database[req.body.email] = {email: req.body.email, password: req.body.password};
+      Database[req.body.email] = { reminders: [], email: req.body.email, password: req.body.password };
+      info = { reminders: [], email: req.body.email, password: req.body.password };
+
+      // let newEmail = req.body.email
+      // Database.push({req.body.email: info})
+
       req.session["email"] = req.body.email;
       res.redirect('/reminders')
     } else{
@@ -34,3 +39,18 @@ let authController = {
 }
 
 module.exports = authController;
+
+
+// //register
+// app.post('/register', (req, res) => {
+//   console.log('register', req.body)
+//   if (req.body.username && req.body.password) {
+//     users[req.body.username] = {username: req.body.username, password: req.body.password};
+//     req.session['user'] = req.body.username;
+//     res.redirect('/me');
+//   } else {
+//     res.status(400);
+//     res.send('invalid user');
+//   }
+// });
+
