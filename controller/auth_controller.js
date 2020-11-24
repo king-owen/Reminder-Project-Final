@@ -14,6 +14,7 @@ let authController = {
     res.locals.path = req.path
     let email = req.query.email
     res.render('auth/register',{email: email})
+    // This is where a problem is, can't figure out
   },
 
   loginSubmit: (req, res) => {
@@ -27,7 +28,7 @@ let authController = {
       Database[key] = info
 
       req.session["email"] = req.body.email;
-      res.redirect('/reminders')
+      res.redirect('/reminder/index')
       console.log(Database[key])
     } else{
 //       console.log("err")
