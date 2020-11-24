@@ -18,7 +18,23 @@ let authController = {
   },
 
   loginSubmit: (req, res) => {
-    //implement
+    let username = req.body.email;
+    let password = req.body.password;
+    // console.log(req.body.email)
+    // console.log(Database[username].password)
+    console.log(Database)
+    req.session["email"] = username;
+    if(Database[username] && Database[username].password == password){
+      //res.locals.email = username;
+      console.log(req.session.email,'loginsubmit')
+      //console.log('here')
+      
+      res.redirect('/reminders')
+    }else{
+      console.log('not in Database')
+      // This is where we redirect to a failed sign up page
+    }
+    //res.redirect('/reminders')
   },
 
   registerSubmit: (req, res) => {
@@ -27,10 +43,13 @@ let authController = {
       info = { reminders: [], email: req.body.email, password: req.body.password };
       Database[key] = info
 
-      req.session["email"] = req.body.email;
+      console.log(req.body.email)
+
+      req.session['email'] = req.body.email;
+
       res.redirect('/reminder/index')
       // Also could be here for problem
-      console.log(Database[key])
+      //console.log(Database[key])
     } else{
 //       console.log("err")
       res.status(400);

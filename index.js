@@ -23,6 +23,7 @@ app.use(function(req, res, next){
 
   if(req.session.email){
       if (Database[req.session.email]) {
+          console.log('inside middle function')
           req.user = Database[req.session.email];
           next();
       }

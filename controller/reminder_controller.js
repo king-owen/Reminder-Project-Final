@@ -1,12 +1,13 @@
-const database = require("../database");
+//const database = require("../database");
 let {Database} = require("../database");
 
 
 let remindersController = {
   // Show a list of reminders
   list: (req, res) => {
-    let { email } = req.user;
-    res.render('reminder/index', { reminders: Database[email].reminders })
+    //let { email } = req.user;
+    //console.log(req.user, 'inlist controller')
+    res.render('reminder/index', { reminders: req.user.reminders })
   },
 
   // Show a Create Reminder Page
@@ -17,31 +18,33 @@ let remindersController = {
 
   // Show the details of a Single Reminder
   listOne: (req, res) => {
-    let { email } = req.user;
+    //let { email } = req.user;
     let reminderToFind = req.params.id;
-    let searchResult = Database[email].reminders.find(function (reminder) {
+    let searchResult = req.user.reminders.find(function (reminder) {
       return reminder.id == reminderToFind;
     })
     if (searchResult != undefined) {
       res.render('reminder/single-reminder', { reminderItem: searchResult })
     } else {
-      res.render('reminder/index', { reminders: Database[email].reminders })
+      res.render('reminder/index', { reminders: req.user.reminders })
     }
   },
 
   // Create a reminder
   // ⚠️ TODO: Currently hardcoded to always create a reminder for Cindy only. You need to make this dynamic. 
   create: (req, res) => {
-    let { email } = req.user;
+    //let { email } = req.user;
     let reminder = {
-      id: Database[email].reminders.length + 1,
+      id: Database[req.session.email].reminders.length + 1,
       title: req.body.title,
       description: req.body.description,
       subtasks: req.body.subtasks,
       tags: req.body.tags,
       completed: false
     }
-    Database[email].reminders.push(reminder);
+    //console.log(req.session.email)
+    Database[req.session.email].reminders.push(reminder);
+    console.log(Database[req.session.email].reminders)
     res.redirect('/reminders');
   },
 

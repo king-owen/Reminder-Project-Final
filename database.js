@@ -1,9 +1,12 @@
 let Database = {
-    cindy: {
-        reminders: []
+    'cindy@gmail': {
+        reminders: [],
+        password: 'hello'
     },
-    alex: {
-        reminders: []
+    'alex@gmail': {
+        reminders: [],
+        password: 'pass'
+
     } 
 }
 
