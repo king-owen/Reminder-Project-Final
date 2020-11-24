@@ -29,6 +29,7 @@ let authController = {
 
       req.session["email"] = req.body.email;
       res.redirect('/reminder/index')
+      // Also could be here for problem
       console.log(Database[key])
     } else{
 //       console.log("err")
