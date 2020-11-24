@@ -38,7 +38,7 @@ let remindersController = {
       id: Database[req.session.email].reminders.length + 1,
       title: req.body.title,
       description: req.body.description,
-      subtasks: req.body.subtasks,
+      subtasks: req.body.subtasks.split(", "),
       tags: req.body.tags,
       completed: false
     }
@@ -70,7 +70,7 @@ let remindersController = {
       id: obj.id,
       title: req.body.title,
       description: req.body.description,
-      subtasks: req.body.subtasks,
+      subtasks: req.body.subtasks.split(", "),
       tags: req.body.tags,
       completed: Boolean(req.body.completed)
     }
