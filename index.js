@@ -23,7 +23,7 @@ app.use(function(req, res, next){
 
   if(req.session.email){
       if (Database[req.session.email]) {
-          req.email = Database[req.session.email];
+          req.user = Database[req.session.email];
           next();
       }
   }   else{
@@ -79,6 +79,6 @@ app.post("/register", authController.registerSubmit);
 app.post("/login", authController.loginSubmit);
 
 
-app.listen(3001, function () {
+app.listen(3000, function () {
   console.log("Server running. Visit: localhost:3001/reminders in your browser 🚀");
 });

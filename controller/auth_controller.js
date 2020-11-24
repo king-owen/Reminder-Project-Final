@@ -1,3 +1,4 @@
+const database = require("../database");
 let {Database} = require("../database");
 
 
@@ -20,17 +21,14 @@ let authController = {
   },
 
   registerSubmit: (req, res) => {
-    console.log(Database)
     if (req.body.email && req.body.password){
       key = req.body.email
       info = { reminders: [], email: req.body.email, password: req.body.password };
-
-
-      // let newEmail = req.body.email
       Database[key] = info
 
       req.session["email"] = req.body.email;
       res.redirect('/reminders')
+      console.log(Database[key])
     } else{
 //       console.log("err")
       res.status(400);
