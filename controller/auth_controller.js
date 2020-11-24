@@ -22,11 +22,12 @@ let authController = {
   registerSubmit: (req, res) => {
     console.log(Database)
     if (req.body.email && req.body.password){
-      Database[req.body.email] = { reminders: [], email: req.body.email, password: req.body.password };
+      key = req.body.email
       info = { reminders: [], email: req.body.email, password: req.body.password };
 
+
       // let newEmail = req.body.email
-      // Database.push({req.body.email: info})
+      Database[key] = info
 
       req.session["email"] = req.body.email;
       res.redirect('/reminders')
