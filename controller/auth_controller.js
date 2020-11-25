@@ -6,14 +6,14 @@ let {Database} = require("../database");
 let authController = {
   login: (req, res) => {
     res.locals.path = req.path
-    res.render('auth/login')
+    res.render('auth/login', {newText: undefined})
   },
 
   register: (req, res) => {
     // console.log("ok")
     res.locals.path = req.path
     let email = req.query.email
-    res.render('auth/register',{email: email})
+    res.render('auth/register',{email, errorText: email, undefined})
     // This is where a problem is, can't figure out
   },
 
@@ -28,11 +28,11 @@ let authController = {
       //res.locals.email = username;
       console.log(req.session.email,'loginsubmit')
       //console.log('here')
-      
-      res.redirect('/reminders')
+
+      res.redirect('reminder/index')
+
     }else{
-      console.log('not in Database')
-      // This is where we redirect to a failed sign up page
+      res.render('auth/login', {newText: "incorrect"})
     }
     //res.redirect('/reminders')
   },
@@ -52,8 +52,9 @@ let authController = {
       //console.log(Database[key])
     } else{
 //       console.log("err")
-      res.status(400);
-      res.send("invalid user")
+    email = ""
+    errorText = "something"
+    res.render('auth/register',{errorText, email: errorText, email})
     }
   }
 }

@@ -3,7 +3,7 @@ module.exports = function(req, res, next) {
         console.log('inside authcheq')
         next();
     }   else{
-        res.redirect("/login");
+        res.redirect("/");
     }
 }
 //was req.user
