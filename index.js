@@ -7,6 +7,7 @@ const authController = require("./controller/auth_controller");
 const cookieSession = require("cookie-session");
 const authCheck = require("./middleware/auth")
 let {Database} = require("./database");
+//const remindersController = require("./controller/reminder_controller");
 // const landingController = require("./controller/landing_controller");
 
 
@@ -23,7 +24,7 @@ app.use(function(req, res, next){
 
   if(req.session.email){
       if (Database[req.session.email]) {
-          console.log('inside middle function')
+          //console.log('inside middle function')
           req.user = Database[req.session.email];
           next();
       }
@@ -62,6 +63,8 @@ app.get("/reminder/new", authCheck, reminderController.new)
 app.get("/reminder/:id", authCheck, reminderController.listOne)
 
 app.get("/reminder/:id/edit", authCheck, reminderController.edit)
+
+app.get("/friends",authCheck, authController.friends);
 
 app.post("/reminder/", reminderController.create)
 

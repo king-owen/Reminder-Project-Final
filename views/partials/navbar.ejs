@@ -11,13 +11,22 @@
       <% if ( locals.path == '/reminder/new'){ %>
         <a class="nav-item nav-link" href="/reminders" >Reminder List</a>
         <a class="nav-item nav-link" href="/reminder/new" style="color: black">Create</a>
+        <a class="nav-item nav-link" href="/friends" >Add Friends</a>
+
     <% } else if (locals.path == '/login') { %>
 
     <% } else if (locals.path == '/register') { %>  
+
+    <% } else if (locals.path == '/friends') { %> 
+    
+      <a class="nav-item nav-link" href="/reminders" >Reminder List</a>
+      <a class="nav-item nav-link" href="/reminder/new">Create</a>
+      <a class="nav-item nav-link" href="/friends" style="color: black">Add Friends</a>
        
     <% } else { %>
       <a class="nav-item nav-link" href="/reminders" style="color: black">Reminder List</a>
       <a class="nav-item nav-link" href="/reminder/new">Create</a>
+      <a class="nav-item nav-link" href="/friends" >Add Friends</a>
     <% } %>
       
     </div>

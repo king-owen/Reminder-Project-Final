@@ -8,6 +8,7 @@ let authController = {
     res.locals.path = req.path
     res.render('auth/login', {newText: undefined})
   },
+  
 
   register: (req, res) => {
     // console.log("ok")
@@ -32,6 +33,7 @@ let authController = {
       res.redirect('reminder/index')
 
     }else{
+      res.locals.path = req.path
       res.render('auth/login', {newText: "incorrect"})
     }
     //res.redirect('/reminders')
@@ -56,7 +58,16 @@ let authController = {
     errorText = "something"
     res.render('auth/register',{errorText, email: errorText, email})
     }
-  }
+   
+  },
+  friends: (req, res) => {
+    console.log('called')
+    //console.log(Database)
+    res.locals.path = req.path
+    console.log(res.locals.path)
+    res.render('reminder/friends',{Database: Database})
+  },
+  
 }
 
 module.exports = authController;
