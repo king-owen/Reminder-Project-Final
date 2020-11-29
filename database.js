@@ -8,7 +8,8 @@ let Database = {
         reminders: [],
         password: 'pass',
         img:"https://leger360.com/wp-content/uploads/2018/06/Guy_Girard2-600x600.jpg"
-    } 
+    }
+     
 }
 
 module.exports = { Database };

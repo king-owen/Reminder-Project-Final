@@ -64,7 +64,9 @@ let authController = {
     console.log('called')
     //console.log(Database)
     res.locals.path = req.path
-    console.log(res.locals.path)
+    res.locals.user = req.user
+
+    console.log(res.locals.user)
     res.render('reminder/friends',{Database: Database})
   },
   
