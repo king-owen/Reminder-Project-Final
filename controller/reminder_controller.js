@@ -103,6 +103,9 @@ let remindersController = {
   getweather: async (req, res) => {
     const fetchResponse = await fetch("http://api.openweathermap.org/data/2.5/weather?q=Vancouver&units=metric&appid=c004c3242a4f08ed84f44a0b4f71a0db");
     const data = await fetchResponse.json();
+    res.locals.path = req.path
+    res.locals.img = " http://openweathermap.org/img/wn/"+data.weather[0].icon+"@2x.png"
+    console.log(res.locals.img)
     res.render("reminder/weather", {
       data
     })
