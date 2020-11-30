@@ -54,6 +54,8 @@ app.use(ejsLayouts);
 
 app.set("view engine", "ejs");
 
+app.get("/weather", reminderController.getweather);
+
 // Routes start here
 
 app.get("/reminders", authCheck, reminderController.list)
@@ -81,6 +83,7 @@ app.get("/login", authController.login);
 app.post("/register", authController.registerSubmit);
 
 app.post("/login", authController.loginSubmit);
+
 
 
 app.listen(3001, function () {

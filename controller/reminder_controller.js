@@ -1,5 +1,6 @@
 //const database = require("../database");
 let {Database} = require("../database");
+let fetch = require("node-fetch")
 
 
 let remindersController = {
@@ -97,6 +98,15 @@ let remindersController = {
     Database.cindy.reminders.splice(deleteIndex, 1);
     // removes the index of the item form the list in the Database
     res.redirect('/reminders');
+  },
+
+  getweather: async (req, res) => {
+    const fetchResponse = await fetch("http://api.openweathermap.org/data/2.5/weather?q=Vancouver&units=metric&appid=c004c3242a4f08ed84f44a0b4f71a0db");
+    const data = await fetchResponse.json();
+    res.render("reminder/weather", {
+      data
+    })
+    console.log(data);
   }
 }
 

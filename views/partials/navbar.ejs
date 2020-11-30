@@ -7,11 +7,11 @@
     <div class="navbar-nav">
       <!--to add if statement-->
      
-      
       <% if ( locals.path == '/reminder/new'){ %>
         <a class="nav-item nav-link" href="/reminders" >Reminder List</a>
         <a class="nav-item nav-link" href="/reminder/new" style="color: black">Create</a>
         <a class="nav-item nav-link" href="/friends" >Add Friends</a>
+        <a class="nav-item nav-link" href="/weather" >Weather</a>
 
     <% } else if (locals.path == '/login') { %>
 
@@ -22,13 +22,22 @@
       <a class="nav-item nav-link" href="/reminders" >Reminder List</a>
       <a class="nav-item nav-link" href="/reminder/new">Create</a>
       <a class="nav-item nav-link" href="/friends" style="color: black">Add Friends</a>
+      <a class="nav-item nav-link" href="/weather" >Weather</a>
+
+    <% } else if (locals.path == '/weather') { %>
+      <!-- won't make the weather link black for some reason -->
+    
+      <a class="nav-item nav-link" href="/reminders" >Reminder List</a>
+      <a class="nav-item nav-link" href="/reminder/new">Create</a>
+      <a class="nav-item nav-link" href="/friends">Add Friends</a>
+      <a class="nav-item nav-link" href="/weather" style="color: black">Weather</a>
        
     <% } else { %>
       <a class="nav-item nav-link" href="/reminders" style="color: black">Reminder List</a>
       <a class="nav-item nav-link" href="/reminder/new">Create</a>
       <a class="nav-item nav-link" href="/friends" >Add Friends</a>
+      <a class="nav-item nav-link" href="/weather" >Weather</a>
     <% } %>
-      
     </div>
   </div>
 </nav>
