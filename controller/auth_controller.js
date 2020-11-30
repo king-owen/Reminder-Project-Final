@@ -45,7 +45,7 @@ let authController = {
       info = { reminders: [], email: req.body.email, password: req.body.password };
       Database[key] = info
 
-      console.log(req.body.email)
+      //console.log(req.body.email)
 
       req.session['email'] = req.body.email;
 
@@ -70,8 +70,10 @@ let authController = {
     res.locals.user = req.user
     let reminderToFind = req.params.id;
     //find the reminder
-    
-    console.log(reminderToFind)
+    console.log(req.user.friendsreminders)
+    req.user.friendsreminders.push(Database[reminderToFind].reminders)
+    console.log(req.user.friendsreminders)
+    //console.log(Database[reminderToFind].reminders)
     //console.log(res.locals.user)
     res.redirect('/reminder/index')
   },

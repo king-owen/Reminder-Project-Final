@@ -7,7 +7,7 @@
       <% if (Database[key] != locals.user) { %>
       <li class="list-group-item">
           <img class="img-fluid img-thumbnail" src= <%= Database[key].img %> alt="">  
-          <a class="btn btn-primary btn-sm" href= <%= "/friends/" + Database[key].reminders %>>Add Friend</a>
+          <a class="btn btn-primary btn-sm" href= <%= "/friends/" + key %>>Add Friend</a>
       <!-- <button type="button" class="btn btn-primary btn-sm">Add Friend</button>  -->
       </li>
       <% } %>
