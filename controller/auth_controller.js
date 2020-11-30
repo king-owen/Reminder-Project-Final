@@ -61,13 +61,19 @@ let authController = {
    
   },
   friends: (req, res) => {
-    console.log('called')
-    //console.log(Database)
     res.locals.path = req.path
     res.locals.user = req.user
-
-    console.log(res.locals.user)
     res.render('reminder/friends',{Database: Database})
+  },
+  friendslist: (req, res) => {
+    res.locals.path = req.path
+    res.locals.user = req.user
+    let reminderToFind = req.params.id;
+    //find the reminder
+    
+    console.log(reminderToFind)
+    //console.log(res.locals.user)
+    res.redirect('/reminder/index')
   },
   
 }
