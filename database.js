@@ -1,6 +1,6 @@
 let Database = {
     'cindy@gmail': {
-        reminders: [],
+        reminders: ['cindy'],
         password: 'hello',
         img:'https://elireview.com/wp-content/uploads/2016/12/reed-profile-square.jpg'
     },

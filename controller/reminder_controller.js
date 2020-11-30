@@ -30,11 +30,11 @@ let remindersController = {
       res.render('reminder/index', { reminders: req.user.reminders })
     }
   },
-  friends : (req, res) => {
-    //console.log('called')
-    //res.locals.path = req.path
-    res.render('reminder/friends')
-  },
+  // friends : (req, res) => {
+  //   //console.log('called')
+  //   res.locals.path = req.path
+  //   res.render('reminder/friends')
+  // },
 
   // Create a reminder
   // ⚠️ TODO: Currently hardcoded to always create a reminder for Cindy only. You need to make this dynamic. 

@@ -68,6 +68,8 @@ app.get("/reminder/:id/edit", authCheck, reminderController.edit)
 
 app.get("/friends",authCheck, authController.friends);
 
+app.get("/friends/:id",authCheck, authController.friendslist);
+
 app.post("/reminder/", reminderController.create)
 
 app.post("/reminder/update/:id", reminderController.update)
