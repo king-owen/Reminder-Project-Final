@@ -11,8 +11,8 @@
     "type": "git",
     "url": ""
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Owen, Luke,",
+  "license": "MIT",
   "homepage": "http",
   "dependencies": {
     "body-parser": "^1.15.2",

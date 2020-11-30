@@ -14,7 +14,7 @@ let remindersController = {
   // Show a Create Reminder Page
   new: (req, res) => {
     res.locals.path = req.path
-    res.render('reminder/create')
+    res.render('reminder/create',  {errorText: undefined})
   },
 
   // Show the details of a Single Reminder
@@ -49,9 +49,15 @@ let remindersController = {
       completed: false
     }
     //console.log(req.session.email)
-    Database[req.session.email].reminders.push(reminder);
-    console.log(Database[req.session.email].reminders)
-    res.redirect('/reminders');
+    if (reminder.title != ""){
+      Database[req.session.email].reminders.push(reminder);
+      console.log(Database[req.session.email].reminders)
+      res.redirect('/reminders');
+    }
+    else {
+      res.render("reminder/create", {errorText: "Error"});
+
+    }
   },
 
   // Show the Edit Reminder Page
