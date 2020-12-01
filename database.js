@@ -1,11 +1,13 @@
 let Database = {
     'cindy@gmail': {
+        username: "cindy@gmail",
         reminders: ['cindy'],
         password: 'hello',
         img:'https://elireview.com/wp-content/uploads/2016/12/reed-profile-square.jpg',
         friendsreminders : []
     },
     'alex@gmail': {
+        username: "alex@gmail",
         reminders: [],
         password: 'pass',
         img:"https://leger360.com/wp-content/uploads/2018/06/Guy_Girard2-600x600.jpg",
