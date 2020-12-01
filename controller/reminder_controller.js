@@ -67,20 +67,30 @@ let remindersController = {
 
   // Edit the Reminder
   update: (req, res) => {
+    console.log("hoddog")
     let { email } = req.user;
     // ⭐️ your implementation here ⭐️
     let reminderToUpdate = req.params.id;
     // find the reminder
     let obj = Database[req.session.email].reminders.find(obj => obj.id == reminderToUpdate)
     // Updates the reminder
+    completed = (req.body.completed)
+    if (completed == "false"){
+      completed = false
+    }
+    else{
+      completed = true
+    }
     let reminder = {
       id: obj.id,
       title: req.body.title,
       description: req.body.description,
       subtasks: req.body.subtasks.split(", "),
       tags: req.body.tags,
-      completed: Boolean(req.body.completed)
+      completed: completed
     }
+    console.log(reminder)
+    // let trueFalse = req.body.
     // Database.cindy.reminders.find(obj => obj.id == reminder.id) = reminder;
     Database[req.session.email].reminders[obj.id - 1] = reminder;
     // Render edited reminder
