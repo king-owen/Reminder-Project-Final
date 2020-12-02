@@ -11,7 +11,7 @@ let Database = {
           {
             id: 2,
             title: 'I will be a second Friends reminder',
-            description: 'this will be my first post',
+            description: 'this will be my Second post',
             subtasks: [ '' ],
             tags: '',
             completed: false
@@ -30,8 +30,8 @@ let Database = {
             completed: false
           },{
             id: 2,
-            title: 'my first post',
-            description: 'this will be my first post',
+            title: 'my Second post',
+            description: 'this will be my Second post',
             subtasks: [ '' ],
             tags: '',
             completed: false

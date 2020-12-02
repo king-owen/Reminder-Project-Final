@@ -13,12 +13,11 @@ let remindersController = {
   // Show a Create Reminder Page
   new: (req, res) => {
     res.locals.path = req.path
-    res.render('reminder/create')
+    res.render('reminder/create', {errorText: undefined})
   },
 
   // Show the details of a Single Reminder
   listOne: (req, res) => {
-    //let { email } = req.user;
     let reminderToFind = req.params.id;
     let searchResult = req.user.reminders.find(function (reminder) {
       return reminder.id == reminderToFind;
@@ -34,7 +33,7 @@ let remindersController = {
   // Create a reminder
   // ⚠️ TODO: Currently hardcoded to always create a reminder for Cindy only. You need to make this dynamic. 
   create: (req, res) => {
-    //let { email } = req.user;
+    
     let reminder = {
       id: Database[req.session.email].reminders.length + 1,
       title: req.body.title,
@@ -43,16 +42,20 @@ let remindersController = {
       tags: req.body.tags,
       completed: false
     }
-    //console.log(req.session.email)
-    Database[req.session.email].reminders.push(reminder);
-    //console.log(Database[req.session.email].reminders)
-    res.redirect('/reminders');
+    if (reminder.title != ""){
+      Database[req.session.email].reminders.push(reminder);
+      console.log(Database[req.session.email].reminders)
+      res.redirect('/reminders');
+    }
+    else {
+      res.render("reminder/create", {errorText: "Error"});
+    }
   },
+   
 
   // Show the Edit Reminder Page
   edit: (req, res) => {
-    //let { email } = req.session.email;
-    //console.log(email)
+    
     // ⭐️ your implementation here ⭐️
     let reminderToFind = req.params.id;
     //find the reminder
@@ -62,24 +65,33 @@ let remindersController = {
 
   // Edit the Reminder
   update: (req, res) => {
+    
     let { email } = req.user;
     // ⭐️ your implementation here ⭐️
     let reminderToUpdate = req.params.id;
     // find the reminder
     let obj = Database[req.session.email].reminders.find(obj => obj.id == reminderToUpdate)
     // Updates the reminder
+    completed = (req.body.completed)
+    if (completed == "false"){
+      completed = false
+    }
+    else{
+      completed = true
+    }
     let reminder = {
       id: obj.id,
       title: req.body.title,
       description: req.body.description,
       subtasks: req.body.subtasks.split(", "),
       tags: req.body.tags,
-      completed: Boolean(req.body.completed)
+      completed: completed
     }
-    // Database.cindy.reminders.find(obj => obj.id == reminder.id) = reminder;
+    
+   
     Database[req.session.email].reminders[obj.id - 1] = reminder;
     // Render edited reminder
-    res.render('reminder/index', { reminders: req.user.reminders, friendslist: req.user.friendsreminders, Database: Database })
+    res.render('reminder/index', { reminders: req.user.reminders,friendslist: req.user.friendsreminders, Database: Database  })
   },
 
   // Delete the Reminder
@@ -105,8 +117,11 @@ let remindersController = {
     res.render("reminder/weather", {
       data
     })
-    //console.log(data);
+    
   }
 }
 
 module.exports = remindersController;
+
+
+

@@ -1,6 +1,6 @@
 <div class="container">
     <h1 class="page-header">Weather in Vancouver <img src=<%= locals.img %>  alt="Weather icon" width="100" height="100"></h1>
-    <!-- Can't get the string to pass into the url to make it vary the image -->
+    
     <ul class="list-group">
         <li class="list-group-item">
         <h3>The current temperature in Vancouver is <%= data.main.temp %> degrees Celsius. <br>
@@ -8,7 +8,7 @@
         </li>
         <li class="list-group-item">
             <h3>The current weather in Vancouver is <%= data.weather.main %>.</h3>
-            <!-- can't figure out why this won't pass a string -->
+            
         </li>
         <li class="list-group-item">
             <h3>The current wind speed in Vancouver is <%= data.wind.speed %> kilometres per hour.</h3>

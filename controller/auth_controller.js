@@ -40,7 +40,7 @@ let authController = {
   registerSubmit: (req, res) => {
     if (req.body.email && req.body.password){
       key = req.body.email
-      info = { reminders: [], email: req.body.email, password: req.body.password,friendsreminders:[] };
+      info = { reminders: [], email: req.body.email, password: req.body.password,friendsreminders:[]};
       Database[key] = info
 
       
@@ -69,7 +69,7 @@ let authController = {
     res.locals.user = req.user
     let reminderToFind = req.params.id;
     
-    //console.log(reminderToFind)
+    
 
     req.user.friendsreminders.push(reminderToFind)
     console.log(req.user.friendsreminders)
@@ -82,16 +82,5 @@ let authController = {
 module.exports = authController;
 
 
-// //register
-// app.post('/register', (req, res) => {
-//   console.log('register', req.body)
-//   if (req.body.username && req.body.password) {
-//     users[req.body.username] = {username: req.body.username, password: req.body.password};
-//     req.session['user'] = req.body.username;
-//     res.redirect('/me');
-//   } else {
-//     res.status(400);
-//     res.send('invalid user');
-//   }
-// });
+
 

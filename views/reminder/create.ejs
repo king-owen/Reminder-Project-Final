@@ -3,6 +3,11 @@
     <div class="form-group">
       <label for="title">Title</label>
       <input type="text" class="form-control" id="titleInput" placeholder="Title" name="title">
+      <% if (errorText) { %>
+        <small id="emailHelp" class="form-text text-muted"> You must enter a title</small>
+      <% } else { %>
+      <small id="emailHelp" class="form-text text-muted">Title is a mandatory field</small>
+      <% } %>
     </div>
     <div class="form-group">
       <label for="description">Description</label>

@@ -20,11 +20,11 @@ app.use(cookieSession({
 
 // implement middleware function
 app.use(function(req, res, next){
-  // console.log("Email is " + req.email)
+  
 
   if(req.session.email){
       if (Database[req.session.email]) {
-          //console.log('inside middle function')
+          
           req.user = Database[req.session.email];
           next();
       }
@@ -41,16 +41,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(ejsLayouts);
 
-// app.use(function(req, res, next) {
-//   res.locals = {
-//       path :req.path
-      
-//   }
-//   console.log(res.locals.path)
-//   next(); // make sure we go to the next routes and don't stop here
-// });
-
-// console.log(res.locals.path)
 
 app.set("view engine", "ejs");
 
@@ -76,7 +66,6 @@ app.post("/reminder/update/:id", reminderController.update)
 
 app.post("/reminder/delete/:id", reminderController.delete)
 
-//app.post("/register",landingController.register);
 
 app.get("/register", authController.register);
 

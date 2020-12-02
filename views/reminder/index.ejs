@@ -23,7 +23,7 @@
 <ul class="list-group">
   <h1 class="page-header">Friends Reminders</h1>
   <% friendslist.forEach(function (reminderItem) { %>
-    <h3>Your Friend <%= reminderItem %></h3>
+    <h4>Your Friend <%= reminderItem %></h4>
     <% Database[reminderItem].reminders.forEach(function (friendsReminder ) { %>
     <li class="list-group-item">
       <strong><%= friendsReminder.title %>: </strong>
