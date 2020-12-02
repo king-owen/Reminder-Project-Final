@@ -15,6 +15,27 @@
       <a class="pull-right" href=<%= "/reminder/" + reminderItem.id %>>View</a>
     </li>
   <% }) %>
+  </div>
 </ul>
 
-</div>
+<div class="container">
+  <% if ( friendslist != undefined && friendslist.length > 0) { %>
+<ul class="list-group">
+  <h1 class="page-header">Friends Reminders</h1>
+  <% friendslist.forEach(function (reminderItem) { %>
+    <h3>Your Friend <%= reminderItem %></h3>
+    <% Database[reminderItem].reminders.forEach(function (friendsReminder ) { %>
+    <li class="list-group-item">
+      <strong><%= friendsReminder.title %>: </strong>
+      <%= friendsReminder.description %>
+      || Completed:
+      <% if (friendsReminder.completed == true) { %>
+        <span class="badge badge-success">True</span>
+      <% } else if (friendsReminder.completed == false) { %>
+        <span class="badge badge-danger">False</span>
+      <% } %>
+    </li>
+    <% }) %>
+  <% }) %>
+  <% } %>
+  </div>

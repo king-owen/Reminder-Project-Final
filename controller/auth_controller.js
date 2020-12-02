@@ -21,39 +21,36 @@ let authController = {
   loginSubmit: (req, res) => {
     let username = req.body.email;
     let password = req.body.password;
-    // console.log(req.body.email)
-    // console.log(Database[username].password)
-    console.log(Database)
+  
+    //console.log(Database)
     req.session["email"] = username;
     if(Database[username] && Database[username].password == password){
-      //res.locals.email = username;
-      console.log(req.session.email,'loginsubmit')
-      //console.log('here')
-
-      res.redirect('reminder/index')
+    //let reminders = req.user.reminders
+    //console.log(req.user.reminders)
+    // res.render('reminder/index' ,{ reminders: reminders, friendslist: req.user.friendsreminders, Database: Database })
+    res.render('reminder/index' ,{ reminders: Database[username].reminders, friendslist: Database[username].friendsreminders, Database: Database }) 
 
     }else{
       res.locals.path = req.path
-      res.render('auth/login', {newText: "incorrect"})
+      res.render('auth/login', {newText: "incorrect", friendslist})
     }
-    //res.redirect('/reminders')
+    // res.render('reminder/index' ,{ reminders: reminders, friendslist: req.user.friendsreminders, Database: Database })
   },
 
   registerSubmit: (req, res) => {
     if (req.body.email && req.body.password){
       key = req.body.email
-      info = { reminders: [], email: req.body.email, password: req.body.password };
+      info = { reminders: [], email: req.body.email, password: req.body.password,friendsreminders:[] };
       Database[key] = info
 
-      //console.log(req.body.email)
+      
 
       req.session['email'] = req.body.email;
 
       res.redirect('/reminder/index')
-      // Also could be here for problem
-      //console.log(Database[key])
+      
     } else{
-//       console.log("err")
+       
     email = ""
     errorText = "something"
     res.render('auth/register',{errorText, email: errorText, email})
@@ -63,19 +60,21 @@ let authController = {
   friends: (req, res) => {
     res.locals.path = req.path
     res.locals.user = req.user
+    console.log(res.locals.user.friendsreminders)
+    console.log(Database)
     res.render('reminder/friends',{Database: Database})
   },
   friendslist: (req, res) => {
     res.locals.path = req.path
     res.locals.user = req.user
     let reminderToFind = req.params.id;
-    //find the reminder
+    
+    //console.log(reminderToFind)
+
+    req.user.friendsreminders.push(reminderToFind)
     console.log(req.user.friendsreminders)
-    req.user.friendsreminders.push(Database[reminderToFind].reminders)
-    console.log(req.user.friendsreminders)
-    //console.log(Database[reminderToFind].reminders)
-    //console.log(res.locals.user)
-    res.redirect('/reminder/index')
+    
+    res.render('reminder/index' ,{reminders: req.user.reminders, friendslist: req.user.friendsreminders, Database: Database})
   },
   
 }

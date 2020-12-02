@@ -6,9 +6,8 @@ let fetch = require("node-fetch")
 let remindersController = {
   // Show a list of reminders
   list: (req, res) => {
-    //let { email } = req.user;
-    //console.log(req.user, 'inlist controller')
-    res.render('reminder/index', { reminders: req.user.reminders })
+  
+    res.render('reminder/index', { reminders: req.user.reminders, friendslist: req.user.friendsreminders, Database: Database })
   },
 
   // Show a Create Reminder Page
@@ -27,14 +26,10 @@ let remindersController = {
     if (searchResult != undefined) {
       res.render('reminder/single-reminder', { reminderItem: searchResult })
     } else {
-      res.render('reminder/index', { reminders: req.user.reminders })
+      res.render('reminder/index', { reminders: req.user.reminders, friendslist: req.user.friendsreminders, Database: Database })
     }
   },
-  // friends : (req, res) => {
-  //   //console.log('called')
-  //   res.locals.path = req.path
-  //   res.render('reminder/friends')
-  // },
+  
 
   // Create a reminder
   // ⚠️ TODO: Currently hardcoded to always create a reminder for Cindy only. You need to make this dynamic. 
@@ -50,17 +45,18 @@ let remindersController = {
     }
     //console.log(req.session.email)
     Database[req.session.email].reminders.push(reminder);
-    console.log(Database[req.session.email].reminders)
+    //console.log(Database[req.session.email].reminders)
     res.redirect('/reminders');
   },
 
   // Show the Edit Reminder Page
   edit: (req, res) => {
-    let { email } = req.user;
+    //let { email } = req.session.email;
+    //console.log(email)
     // ⭐️ your implementation here ⭐️
     let reminderToFind = req.params.id;
     //find the reminder
-    let obj = Database[email].reminders.find(obj => obj.id == reminderToFind)
+    let obj = Database[req.session.email].reminders.find(obj => obj.id == reminderToFind)
     res.render('reminder/edit',{reminderItem: obj})
   },
 
@@ -70,7 +66,7 @@ let remindersController = {
     // ⭐️ your implementation here ⭐️
     let reminderToUpdate = req.params.id;
     // find the reminder
-    let obj = Database[email].reminders.find(obj => obj.id == reminderToUpdate)
+    let obj = Database[req.session.email].reminders.find(obj => obj.id == reminderToUpdate)
     // Updates the reminder
     let reminder = {
       id: obj.id,
@@ -81,9 +77,9 @@ let remindersController = {
       completed: Boolean(req.body.completed)
     }
     // Database.cindy.reminders.find(obj => obj.id == reminder.id) = reminder;
-    Database[email].reminders[obj.id - 1] = reminder;
+    Database[req.session.email].reminders[obj.id - 1] = reminder;
     // Render edited reminder
-    res.redirect('/reminders');
+    res.render('reminder/index', { reminders: req.user.reminders, friendslist: req.user.friendsreminders, Database: Database })
   },
 
   // Delete the Reminder
@@ -92,10 +88,10 @@ let remindersController = {
     // ⭐️ your implementation here ⭐️
     let reminderToDelete = req.params.id;
     // find the reminder
-    let obj = Database[email].reminders.find(obj => obj.id == reminderToDelete)
-    let deleteIndex = Database[email].reminders.indexOf(obj);
+    let obj = Database[req.session.email].reminders.find(obj => obj.id == reminderToDelete)
+    let deleteIndex = Database[req.session.email].reminders.indexOf(obj);
     // finds the index of the reminder
-    Database.cindy.reminders.splice(deleteIndex, 1);
+    Database[req.session.email].reminders.splice(deleteIndex, 1);
     // removes the index of the item form the list in the Database
     res.redirect('/reminders');
   },
@@ -109,7 +105,7 @@ let remindersController = {
     res.render("reminder/weather", {
       data
     })
-    console.log(data);
+    //console.log(data);
   }
 }
 

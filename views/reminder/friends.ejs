@@ -4,7 +4,7 @@
   <h1>Friends List</h1>
   <ul class="list-group">
     <% for (const [key, value] of Object.entries(Database)) { %>
-      <% if (Database[key] != locals.user) { %>
+      <% if (Database[key] != locals.user  && locals.user.friendsreminders.includes(key) != true ) { %>
       <li class="list-group-item">
           <img class="img-fluid img-thumbnail" src= <%= Database[key].img %> alt="">  
           <a class="btn btn-primary btn-sm" href= <%= "/friends/" + key %>>Add Friend</a>
