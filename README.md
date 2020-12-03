@@ -47,7 +47,7 @@ C:\REMINDER-PROJECT-FINAL
 The code is implemented in an MVC pattern, with the controllers choosing what parts of the views to display depending on user input and user events. There is no model folder because we are currently using a mock database in a .js file. There is also a middleware directory containing a cookie folder that authenticates each reminder page with cookies. 
 
 **Incomplete Tasks**
-
+We didn't implement every user having a spot in their database for profile picture, how we would resolve this is to take an input from the new user and then input it into the unsplash link into the database. If user doesn't input an image link, we give them a default silhouette image. To display the image we would implement it into the ejs pages, depending on where the profile picture would fit nicely.
 
 **Dependencies**
 "body-parser": "^1.15.2",
